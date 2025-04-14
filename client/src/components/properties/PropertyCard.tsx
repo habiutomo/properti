@@ -3,18 +3,20 @@ import { Heart, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Property } from "@shared/schema";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/hooks/use-language";
 
 interface PropertyCardProps {
   property: Property;
 }
 
 const PropertyCard = ({ property }: PropertyCardProps) => {
+  const { t, formatCurrency } = useLanguage();
+  
   const formatPrice = (price: string) => {
-    const numPrice = parseFloat(price);
     if (property.purpose === "rent") {
-      return `$${numPrice.toLocaleString()}/month`;
+      return `${formatCurrency(price)}/${t("property.period.month")}`;
     }
-    return `$${numPrice.toLocaleString()}`;
+    return formatCurrency(price);
   };
 
   return (
@@ -30,7 +32,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
             variant={property.purpose === "rent" ? "secondary" : "default"} 
             className="px-2 py-1 text-xs font-semibold"
           >
-            {property.purpose === "rent" ? "FOR RENT" : "FOR SALE"}
+            {property.purpose === "rent" ? t("property.purpose.rent") : t("property.purpose.sale")}
           </Badge>
         </div>
         <Button 
@@ -57,7 +59,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
               }}
             >
               <Video className="h-4 w-4 mr-1.5" />
-              Virtual Tour
+              {t("property.virtual")}
             </Button>
           </div>
         )}
@@ -94,7 +96,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
-                  {property.bedrooms} Bedrooms
+                  {property.bedrooms} {t("property.card.beds")}
                 </div>
                 <div>
                   <svg 
