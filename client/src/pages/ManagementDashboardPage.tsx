@@ -41,7 +41,7 @@ import { generateMockProperty } from "@/lib/propertyImages";
 const ManagementDashboardPage = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const { t } = useLanguage();
-  
+
   // Generate some mock properties for display
   const mockProperties = Array.from({ length: 5 }).map((_, index) => 
     generateMockProperty(index + 1)
@@ -54,7 +54,7 @@ const ManagementDashboardPage = () => {
           <h1 className="text-3xl font-bold text-gray-900">Property Management Dashboard</h1>
           <p className="text-gray-500 mt-2">Manage your properties, tenants, and maintenance requests in one place</p>
         </div>
-        
+
         <Tabs defaultValue="overview" onValueChange={setActiveTab} className="space-y-8">
           <div className="flex justify-between items-center">
             <TabsList className="grid w-full max-w-md grid-cols-4">
@@ -63,7 +63,7 @@ const ManagementDashboardPage = () => {
               <TabsTrigger value="tenants">Tenants</TabsTrigger>
               <TabsTrigger value="maintenance">Maintenance</TabsTrigger>
             </TabsList>
-            
+
             <div className="flex items-center space-x-3">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -83,29 +83,25 @@ const ManagementDashboardPage = () => {
                   <DropdownMenuItem>Vacant Only</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              
+
               {activeTab === "properties" && (
-                <Button size="sm" onClick={() => window.location.href = "/manage/properties"} className="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
-                    <path d="M7 17l9.2-9.2M17 17V7H7" />
-                  </svg>
-                  {t("management.property.cms")}
+                <Button variant="outline" onClick={() => window.location.href = "/add-property"} className="flex items-center">
+                  <Plus className="h-4 w-4 mr-2" />
+                  {t("management.add")}
                 </Button>
               )}
             </div>
           </div>
-          
+
           <TabsContent value="overview" className="mt-0">
             <PropertyStats />
           </TabsContent>
-          
+
           <TabsContent value="properties" className="mt-0">
             <div className="mb-6">
-              <Button variant="outline" onClick={() => window.location.href = "/manage/properties"} className="flex items-center">
-                <span>{t("management.property.cms")}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
-                  <path d="M7 17l9.2-9.2M17 17V7H7" />
-                </svg>
+              <Button variant="outline" onClick={() => window.location.href = "/add-property"} className="flex items-center">
+                <Plus className="h-4 w-4 mr-2" />
+                {t("management.add")}
               </Button>
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -145,7 +141,7 @@ const ManagementDashboardPage = () => {
                       <Home className="h-3.5 w-3.5 mr-1" />
                       {property.address}, {property.city}
                     </p>
-                    
+
                     <div className="mt-3 grid grid-cols-2 gap-3">
                       <div className="text-center p-2 bg-gray-50 rounded">
                         <p className="text-xs text-gray-500">Monthly Rent</p>
@@ -159,11 +155,11 @@ const ManagementDashboardPage = () => {
                   </CardContent>
                 </Card>
               ))}
-              
-              
+
+
             </div>
           </TabsContent>
-          
+
           <TabsContent value="tenants" className="mt-0">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[1, 2, 3, 4, 5].map((index) => (
@@ -180,7 +176,7 @@ const ManagementDashboardPage = () => {
                         <p className="text-sm text-gray-500">{mockProperties[Math.min(index - 1, mockProperties.length - 1)].title}</p>
                       </div>
                     </div>
-                    
+
                     <div className="space-y-3 mb-4">
                       <div className="flex items-center text-sm">
                         <Mail className="h-4 w-4 text-gray-400 mr-2" />
@@ -199,12 +195,12 @@ const ManagementDashboardPage = () => {
                         <span className="text-gray-600">Rent: ${(1000 + index * 200).toLocaleString()}/month</span>
                       </div>
                     </div>
-                    
+
                     <div className="flex justify-between mt-4">
                       <Badge variant={index % 3 === 0 ? "destructive" : "outline"}>
                         {index % 3 === 0 ? "Payment Due" : "Paid"}
                       </Badge>
-                      
+
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button variant="ghost" size="sm">
@@ -225,7 +221,7 @@ const ManagementDashboardPage = () => {
               ))}
             </div>
           </TabsContent>
-          
+
           <TabsContent value="maintenance" className="mt-0">
             <div className="space-y-6">
               <Card>
@@ -313,7 +309,7 @@ const ManagementDashboardPage = () => {
                               </div>
                             </div>
                           </div>
-                          
+
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm">
@@ -335,7 +331,7 @@ const ManagementDashboardPage = () => {
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Card>
                 <CardHeader>
                   <CardTitle>Maintenance Overview</CardTitle>
@@ -360,7 +356,7 @@ const ManagementDashboardPage = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span className="text-sm font-medium">Average Resolution Time</span>
@@ -368,7 +364,7 @@ const ManagementDashboardPage = () => {
                       <div className="text-2xl font-bold">3.2 days</div>
                       <div className="text-xs text-green-600">↓ 12% from last month</div>
                     </div>
-                    
+
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span className="text-sm font-medium">Maintenance Budget</span>
