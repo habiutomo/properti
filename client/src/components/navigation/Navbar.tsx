@@ -49,12 +49,12 @@ const Navbar = () => {
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
             <LanguageSwitcher />
-            
+
             <Button variant="ghost" size="icon" className="rounded-full">
               <Bell className="h-5 w-5 text-gray-400" />
               <span className="sr-only">View notifications</span>
             </Button>
-            
+
             <div className="ml-3 relative">
               <div>
                 <button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
@@ -63,12 +63,6 @@ const Navbar = () => {
                 </button>
               </div>
             </div>
-            
-            <Link href="/add-property">
-              <Button className="ml-6">
-                {t("management.add")}
-              </Button>
-            </Link>
           </div>
           <div className="-mr-2 flex items-center sm:hidden">
             <Sheet open={open} onOpenChange={setOpen}>
@@ -98,11 +92,6 @@ const Navbar = () => {
                     <div className="mb-4">
                       <LanguageSwitcher />
                     </div>
-                    <Link href="/add-property">
-                      <Button className="w-full" onClick={() => setOpen(false)}>
-                        {t("management.add")}
-                      </Button>
-                    </Link>
                   </div>
                 </div>
               </SheetContent>

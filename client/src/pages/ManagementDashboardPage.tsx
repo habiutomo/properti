@@ -160,18 +160,7 @@ const ManagementDashboardPage = () => {
                 </Card>
               ))}
               
-              {/* Add new property card */}
-              <Card className="border-dashed border-2 border-gray-300 bg-gray-50 hover:bg-gray-100 transition-colors cursor-pointer flex flex-col items-center justify-center h-full min-h-[20rem]">
-                <CardContent className="flex flex-col items-center justify-center h-full py-10">
-                  <div className="h-12 w-12 rounded-full bg-gray-200 flex items-center justify-center mb-4">
-                    <Plus className="h-6 w-6 text-gray-500" />
-                  </div>
-                  <h3 className="font-medium text-gray-700">Add New Property</h3>
-                  <p className="text-gray-500 text-sm text-center mt-2">
-                    Click to add a new property to your management portfolio
-                  </p>
-                </CardContent>
-              </Card>
+              
             </div>
           </TabsContent>
           
