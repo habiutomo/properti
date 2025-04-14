@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLanguage } from "@/hooks/use-language";
 import { 
   Card, 
   CardContent, 
@@ -39,6 +40,7 @@ import { generateMockProperty } from "@/lib/propertyImages";
 
 const ManagementDashboardPage = () => {
   const [activeTab, setActiveTab] = useState("overview");
+  const { t } = useLanguage();
   
   // Generate some mock properties for display
   const mockProperties = Array.from({ length: 5 }).map((_, index) => 
@@ -96,6 +98,14 @@ const ManagementDashboardPage = () => {
           </TabsContent>
           
           <TabsContent value="properties" className="mt-0">
+            <div className="mb-6">
+              <Button variant="outline" onClick={() => window.location.href = "/manage/properties"} className="flex items-center">
+                <span>{t("management.property.cms")}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
+                  <path d="M7 17l9.2-9.2M17 17V7H7" />
+                </svg>
+              </Button>
+            </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {mockProperties.map((property) => (
                 <Card key={property.id} className="overflow-hidden">
