@@ -470,7 +470,7 @@ const AddPropertyPage = () => {
                   <Button
                     type="button"
                     variant="outline"
-                    onClick={() => navigate("/properties")}
+                    onClick={() => setLocation("/properties")}
                   >
                     Cancel
                   </Button>
