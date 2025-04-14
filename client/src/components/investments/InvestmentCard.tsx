@@ -3,12 +3,14 @@ import { InvestmentProject } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { differenceInDays } from "date-fns";
+import { useLanguage } from "@/hooks/use-language";
 
 interface InvestmentCardProps {
   project: InvestmentProject;
 }
 
 const InvestmentCard = ({ project }: InvestmentCardProps) => {
+  const { t, formatCurrency } = useLanguage();
   const percentFunded = Math.round((parseFloat(project.currentAmount) / parseFloat(project.targetAmount)) * 100);
   const daysLeft = differenceInDays(new Date(project.endDate), new Date());
   
@@ -46,30 +48,30 @@ const InvestmentCard = ({ project }: InvestmentCardProps) => {
       <div className="p-5">
         <div className="flex justify-between items-center mb-3">
           <span className="text-sm font-medium text-gray-500">
-            Target: ${parseFloat(project.targetAmount).toLocaleString()}
+            {t("investment.target")}: {formatCurrency(project.targetAmount)}
           </span>
           <span className="text-sm font-medium text-green-600">
-            {percentFunded}% Funded
+            {percentFunded}% {t("investment.funded")}
           </span>
         </div>
         <Progress value={percentFunded} className="h-2.5" />
         <div className="mt-4 flex justify-between items-center">
           <div>
-            <p className="text-sm text-gray-500">Expected ROI</p>
+            <p className="text-sm text-gray-500">{t("investment.roi.expected")}</p>
             <p className="text-lg font-semibold text-primary-700">
               {parseFloat(project.roi).toFixed(1)}%
             </p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Duration</p>
+            <p className="text-sm text-gray-500">{t("investment.duration")}</p>
             <p className="text-lg font-semibold text-primary-700">
-              {project.duration} months
+              {project.duration} {t("property.period.months")}
             </p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Min. Investment</p>
+            <p className="text-sm text-gray-500">{t("investment.min")}</p>
             <p className="text-lg font-semibold text-primary-700">
-              ${parseFloat(project.minInvestment).toLocaleString()}
+              {formatCurrency(project.minInvestment)}
             </p>
           </div>
         </div>
