@@ -78,7 +78,7 @@ const InvestmentCard = ({ project }: InvestmentCardProps) => {
         <div className="mt-5">
           <Link href={`/invest/${project.id}`}>
             <Button className="w-full">
-              View Opportunity
+              {t("investment.view_opportunity")}
             </Button>
           </Link>
         </div>
@@ -93,7 +93,10 @@ const InvestmentCard = ({ project }: InvestmentCardProps) => {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            {daysLeft > 0 ? `${daysLeft} days left to invest` : "Investment deadline passed"}
+            {daysLeft > 0 
+              ? t("investment.days_left", { days: daysLeft }) 
+              : t("investment.deadline_passed")
+            }
           </span>
         </div>
       </div>

@@ -7,7 +7,7 @@ export type Language = "id" | "en";
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (key: string, params?: Record<string, any>) => string;
   formatCurrency: (amount: number | string) => string;
 }
 
@@ -67,6 +67,7 @@ const translations: Record<Language, Record<string, string>> = {
     "property.card.size": "Luas",
     "property.card.viewDetails": "Lihat Detail",
     "property.virtual": "Tur Virtual",
+    "property.period.months": "bulan",
 
     // Property Detail
     "property.detail.description": "Deskripsi",
@@ -78,15 +79,21 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Investment Projects
     "investment.roi": "ROI",
+    "investment.roi.expected": "Perkiraan ROI",
     "investment.duration": "Durasi",
+    "investment.min": "Min. Investasi",
     "investment.minInvestment": "Investasi Minimum",
     "investment.target": "Target Dana",
+    "investment.funded": "Terdanai",
     "investment.raised": "Terkumpul",
     "investment.location": "Lokasi",
     "investment.type": "Tipe Proyek",
     "investment.ends": "Berakhir",
     "investment.status": "Status",
     "investment.invest": "Investasi Sekarang",
+    "investment.view_opportunity": "Lihat Peluang",
+    "investment.days_left": "{{days}} hari tersisa untuk investasi",
+    "investment.deadline_passed": "Batas waktu investasi berakhir",
     "investment.status.active": "Aktif",
     "investment.status.funded": "Terdanai",
     "investment.status.completed": "Selesai",
@@ -174,6 +181,7 @@ const translations: Record<Language, Record<string, string>> = {
     "property.card.size": "Size",
     "property.card.viewDetails": "View Details",
     "property.virtual": "Virtual Tour",
+    "property.period.months": "months",
 
     // Property Detail
     "property.detail.description": "Description",
@@ -185,15 +193,21 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Investment Projects
     "investment.roi": "ROI",
+    "investment.roi.expected": "Expected ROI",
     "investment.duration": "Duration",
+    "investment.min": "Min. Investment",
     "investment.minInvestment": "Minimum Investment",
     "investment.target": "Target Amount",
+    "investment.funded": "Funded",
     "investment.raised": "Raised",
     "investment.location": "Location",
     "investment.type": "Project Type",
     "investment.ends": "Ends",
     "investment.status": "Status",
     "investment.invest": "Invest Now",
+    "investment.view_opportunity": "View Opportunity",
+    "investment.days_left": "{{days}} days left to invest",
+    "investment.deadline_passed": "Investment deadline passed",
     "investment.status.active": "Active",
     "investment.status.funded": "Funded",
     "investment.status.completed": "Completed",
@@ -248,8 +262,17 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>("id");
 
   // Translation function
-  const t = (key: string): string => {
-    return translations[language][key] || key;
+  const t = (key: string, params?: Record<string, any>): string => {
+    let translation = translations[language][key] || key;
+    
+    // Replace parameters if provided
+    if (params) {
+      Object.entries(params).forEach(([paramKey, paramValue]) => {
+        translation = translation.replace(`{{${paramKey}}}`, paramValue.toString());
+      });
+    }
+    
+    return translation;
   };
 
   // Function to format currency
