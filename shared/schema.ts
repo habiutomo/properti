@@ -1,4 +1,5 @@
-import { pgTable, text, serial, integer, boolean, numeric, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, numeric, timestamp, primaryKey } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -12,7 +13,11 @@ export const users = pgTable("users", {
   phoneNumber: text("phone_number"),
   isLandlord: boolean("is_landlord").default(false),
   isInvestor: boolean("is_investor").default(false),
+  stripeCustomerId: text("stripe_customer_id"),
+  stripeSubscriptionId: text("stripe_subscription_id"),
 });
+
+// Menunda relasi hingga semua tabel didefinisikan
 
 // Property table
 export const properties = pgTable("properties", {
