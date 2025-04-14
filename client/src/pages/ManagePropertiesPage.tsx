@@ -184,9 +184,11 @@ const ManagePropertiesPage = () => {
           </p>
         </div>
         <div className="mt-4 md:mt-0">
-          <Button onClick={() => navigate("/add-property")} className="flex items-center">
-            <Plus className="mr-2 h-4 w-4" />
-            {t("management.add")}
+          <Button onClick={() => navigate("/manage/properties")} className="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
+              <path d="M7 17l9.2-9.2M17 17V7H7" />
+            </svg>
+            {t("management.property.cms")}
           </Button>
         </div>
       </div>

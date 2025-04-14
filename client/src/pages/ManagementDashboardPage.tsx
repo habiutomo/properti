@@ -84,12 +84,14 @@ const ManagementDashboardPage = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
               
-              <Button size="sm" className="flex items-center">
-                <Plus className="h-4 w-4 mr-2" />
-                {activeTab === "properties" ? "Add Property" : 
-                  activeTab === "tenants" ? "Add Tenant" : 
-                  activeTab === "maintenance" ? "Add Request" : "Add New"}
-              </Button>
+              {activeTab === "properties" && (
+                <Button size="sm" onClick={() => window.location.href = "/manage/properties"} className="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
+                    <path d="M7 17l9.2-9.2M17 17V7H7" />
+                  </svg>
+                  {t("management.property.cms")}
+                </Button>
+              )}
             </div>
           </div>
           
