@@ -19,7 +19,6 @@ const Navbar = () => {
     { name: t("nav.properties"), href: "/properties", current: location === "/properties" },
     { name: t("nav.investments"), href: "/invest", current: location === "/invest" },
     { name: t("nav.management"), href: "/manage", current: location === "/manage" },
-    { name: t("nav.insights"), href: "#", current: false },
   ];
 
   return (
