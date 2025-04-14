@@ -76,6 +76,4 @@ Kontribusi sangat diterima! Silakan buat pull request atau buka issue untuk disk
 
 Proyek ini dilisensikan di bawah MIT License.
 ```
-
-Anda dapat menyesuaikan README ini sesuai kebutuhan proyek Anda.
-Anda dapat menyesuaikan README ini sesuai kebutuhan proyek Anda.
+habizinnia@gmail.com
