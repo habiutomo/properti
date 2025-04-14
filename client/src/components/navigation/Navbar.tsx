@@ -7,16 +7,19 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Bell, Menu } from "lucide-react";
+import { useLanguage } from "@/hooks/use-language";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 const Navbar = () => {
   const [location] = useLocation();
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
 
   const navigationLinks = [
-    { name: "Discover", href: "/properties", current: location === "/properties" },
-    { name: "Invest", href: "/invest", current: location === "/invest" },
-    { name: "Manage", href: "/manage", current: location === "/manage" },
-    { name: "Insights", href: "#", current: false },
+    { name: t("nav.properties"), href: "/properties", current: location === "/properties" },
+    { name: t("nav.investments"), href: "/invest", current: location === "/invest" },
+    { name: t("nav.management"), href: "/manage", current: location === "/manage" },
+    { name: t("nav.insights"), href: "#", current: false },
   ];
 
   return (
@@ -46,6 +49,8 @@ const Navbar = () => {
             </div>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
+            <LanguageSwitcher />
+            
             <Button variant="ghost" size="icon" className="rounded-full">
               <Bell className="h-5 w-5 text-gray-400" />
               <span className="sr-only">View notifications</span>
@@ -62,7 +67,7 @@ const Navbar = () => {
             
             <Link href="/add-property">
               <Button className="ml-6">
-                List Property
+                {t("management.add")}
               </Button>
             </Link>
           </div>
@@ -91,9 +96,12 @@ const Navbar = () => {
                     </Link>
                   ))}
                   <div className="border-t border-gray-200 pt-4 mt-2">
+                    <div className="mb-4">
+                      <LanguageSwitcher />
+                    </div>
                     <Link href="/add-property">
                       <Button className="w-full" onClick={() => setOpen(false)}>
-                        List Property
+                        {t("management.add")}
                       </Button>
                     </Link>
                   </div>
